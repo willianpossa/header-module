@@ -1,17 +1,28 @@
 {
-  "name": "header-ecom",
+  "name": "petz-header-ecom",
   "version": "0.0.1",
   "description": "Submodule to header Ecom",
-  "main": "index.js",
-  "repository": "git@github.com:willianpossa/header-module.git",
   "author": "Willian Stroher Possa <willian@hanzo.com.br>",
   "license": "MIT",
   "private": true,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:willianpossa/header-module.git"
+  },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
+    "@babel/preset-typescript": "^7.15.0",
     "@types/react": "^17.0.21",
+    "@types/react-dom": "^17.0.9",
     "@types/styled-components": "^5.1.14",
     "react": "^17.0.2",
     "styled-components": "^5.3.1",
@@ -19,5 +30,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1"
+  },
+  "scripts": {
+    "build": "rm -rf dist && NODE_ENV=production yarn build:esm && yarn build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs"
   }
 }
